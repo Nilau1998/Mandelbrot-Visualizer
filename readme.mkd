@@ -1,0 +1,5 @@
+# About
+...
+
+# Installing
+This project needs Qt6 to build, you can install it via `sudo apt install qt6-base-dev`. CMake should then figure out how to build the Qt6 dependencies.
