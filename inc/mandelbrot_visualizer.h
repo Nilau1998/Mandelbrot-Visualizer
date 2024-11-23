@@ -2,16 +2,16 @@
 
 #include <QMainWindow>
 
-#include "ui_mandelbrot_visualizer.h"
+namespace Ui {
+    class MandelbrotVisualizer;
+}
 
 class MandelbrotVisualizer : public QMainWindow {
-    Q_OBJECT
+
     public:
         explicit MandelbrotVisualizer(QMainWindow *parent = nullptr);
-
-    private slots:
-        void on_pushButton_clicked();
+        ~MandelbrotVisualizer();
 
     private:
-        Ui::MandelbrotVisualizer ui;
+        Ui::MandelbrotVisualizer *ui;
 };
