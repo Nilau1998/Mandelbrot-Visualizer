@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.12)
-# CUDA
+cmake_minimum_required(VERSION 3.28)
+
 set(CMAKE_CUDA_ARCHITECTURES 50 61 72 89)
 set(CMAKE_CUDA_COMPILER /usr/local/cuda/bin/nvcc)
 
@@ -8,11 +8,14 @@ enable_language(CUDA)
 
 include(${CMAKE_SOURCE_DIR}/files.cmake)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOUIC_SEARCH_PATHS res)
 
-set(CMAKE_AUTORCC ON)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+find_package(Qt6 COMPONENTS Core Gui Widgets OpenGLWidgets REQUIRED)
 
-add_executable(${PROJECT_NAME} ${CXX_SRCS} ${CXX_INCS})
+add_executable(${PROJECT_NAME} ${CXX_SRCS})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core Qt6::Gui Qt6::Widgets)
+target_include_directories(${PROJECT_NAME} PRIVATE inc)
+
+target_link_libraries(${PROJECT_NAME} Qt6::Core Qt6::Gui Qt6::Widgets Qt6::OpenGLWidgets)
